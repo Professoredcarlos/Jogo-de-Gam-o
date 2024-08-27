@@ -1,0 +1,120 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Gamão - Escola Municipal Laura Folly</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background: url('escola.jpg') no-repeat center center fixed;
+            background-size: cover;
+            margin: 0;
+            padding: 0;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+        }
+
+        .game-board {
+            width: 90vw;
+            max-width: 400px;
+            aspect-ratio: 2 / 1;
+            background-color: #f0f0f0;
+            display: grid;
+            grid-template-columns: repeat(12, 1fr);
+            grid-template-rows: repeat(2, 1fr);
+            border: 2px solid #000;
+        }
+
+        .point {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            position: relative;
+            border: 1px solid #000;
+        }
+
+        .piece {
+            width: 70%;
+            aspect-ratio: 1;
+            border-radius: 50%;
+            background-color: red;
+            position: absolute;
+        }
+
+        #status {
+            margin-top: 10px;
+            text-align: center;
+            font-size: 1.2em;
+            color: #fff;
+            background-color: rgba(0, 0, 0, 0.7);
+            padding: 10px;
+            border-radius: 10px;
+            width: 80%;
+            max-width: 300px;
+        }
+    </style>
+</head>
+<body>
+    <div class="game-board">
+        <!-- Posições do tabuleiro -->
+        <div class="point"></div>
+        <div class="point"></div>
+        <div class="point"></div>
+        <div class="point"></div>
+        <div class="point"></div>
+        <div class="point"></div>
+        <div class="point"></div>
+        <div class="point"></div>
+        <div class="point"></div>
+        <div class="point"></div>
+        <div class="point"></div>
+        <div class="point"></div>
+        <div class="point"></div>
+        <div class="point"></div>
+        <div class="point"></div>
+        <div class="point"></div>
+        <div class="point"></div>
+        <div class="point"></div>
+        <div class="point"></div>
+        <div class="point"></div>
+        <div class="point"></div>
+        <div class="point"></div>
+        <div class="point"></div>
+        <div class="point"></div>
+    </div>
+
+    <div id="status">Jogo em andamento...</div>
+
+    <script>
+        const statusDiv = document.getElementById('status');
+        let currentPlayer = 1;
+        let player1Points = 0;
+        let player2Points = 0;
+
+        function checkWin() {
+            if (player1Points >= 15) {
+                statusDiv.innerText = "Parabéns, Jogador 1, você é o campeão!";
+            } else if (player2Points >= 15) {
+                statusDiv.innerText = "Parabéns, Jogador 2, você é o campeão!";
+            }
+        }
+
+        function advance() {
+            if (currentPlayer === 1) {
+                player1Points++;
+                currentPlayer = 2;
+            } else {
+                player2Points++;
+                currentPlayer = 1;
+            }
+            checkWin();
+        }
+
+        document.querySelector('.game-board').addEventListener('click', advance);
+    </script>
+</body>
+</html>
